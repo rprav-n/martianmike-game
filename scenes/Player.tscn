@@ -131,8 +131,12 @@ script = ExtResource( 5 )
 position = Vector2( 0, -16 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 3
+frame = 6
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -12 )
 shape = SubResource( 25 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
