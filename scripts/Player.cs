@@ -30,10 +30,11 @@ public class Player : KinematicBody2D
 			}
 		}
 		
-		if (Input.IsActionJustPressed("jump")) 
+		if (Input.IsActionJustPressed("jump") && IsOnFloor()) 
 		{
 			newVelocity.y = -jumpForce;
 		}
+		
 		
 		var direction = Input.GetAxis("move_left", "move_right");
 		
