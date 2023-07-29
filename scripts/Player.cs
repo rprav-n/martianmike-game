@@ -70,5 +70,15 @@ public class Player : KinematicBody2D
 			}
 		}
 	}
+	
+	public void StopVelocity() 
+	{
+		newVelocity = Vector2.Zero;
+	}
+	
+	public void Jump(int jumpForce) 
+	{
+		newVelocity.y = -jumpForce;
+	}
 
 }
