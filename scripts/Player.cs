@@ -21,13 +21,12 @@ public class Player : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		if (!IsOnFloor()) 
+		
+		// Always apply gravity
+		newVelocity += new Vector2(0, gravity * delta);	
+		if (newVelocity.y > 500) 
 		{
-			newVelocity += new Vector2(0, gravity * delta);	
-			if (newVelocity.y > 500) 
-			{
-				newVelocity.y = 500;
-			}
+			newVelocity.y = 500;
 		}
 		
 		if (Input.IsActionJustPressed("jump") && IsOnFloor()) 
@@ -35,12 +34,41 @@ public class Player : KinematicBody2D
 			newVelocity.y = -jumpForce;
 		}
 		
-		
 		var direction = Input.GetAxis("move_left", "move_right");
+		if (direction != 0) 
+		{
+			animatedSprite.FlipH = direction == -1;
+		}
 		
 		newVelocity.x = direction * speed;
 		
 		newVelocity = MoveAndSlide(newVelocity, Vector2.Up);
+		
+		updateAnimations(direction, newVelocity.y);
+	}
+	
+	private void updateAnimations(float direction, float yVelocity)
+	{
+		
+		if (IsOnFloor()) 
+		{
+			if (direction == 0) 
+			{
+				animatedSprite.Play("idle");	
+			} else 
+			{
+				animatedSprite.Play("run");
+			}
+		} else 
+		{
+			if (yVelocity < 0) 
+			{
+				animatedSprite.Play("jump");
+			} else 
+			{
+				animatedSprite.Play("fall");
+			}
+		}
 	}
 
 }
