@@ -17,6 +17,8 @@ public class Level : Node2D
 	
 	[Export]
 	private PackedScene NextLevelScene;
+	
+	private HUD hud;
 
 	public override void _Ready()
 	{
@@ -25,6 +27,8 @@ public class Level : Node2D
 		deadZone = GetNode<Area2D>("DeadZone");
 		player = GetNode<Player>("Player");
 		player.GlobalPosition = start.GetSpawnPosition();
+		
+		hud = GetNode<HUD>("UILayer/HUD");
 		
 		var traps = GetTree().GetNodesInGroup("traps");
 		
@@ -96,6 +100,7 @@ public class Level : Node2D
 	private void createLevelTimer() 
 	{
 		timeLeft = levelTimer;
+		hud.SetTimeLabel(timeLeft);
 		timer = new Timer();
 		timer.WaitTime = 1f;
 		timer.Name = "LevelTimer";
@@ -113,7 +118,8 @@ public class Level : Node2D
 			{
 				resetPlayer(player);
 				timeLeft = levelTimer;
-			}	
+			}
+			hud.SetTimeLabel(timeLeft);
 		}
 		
 	}

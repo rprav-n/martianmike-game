@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Level.cs" type="Script" id=2]
@@ -11,10 +11,13 @@
 [ext_resource path="res://scenes/SpikeBall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/JumpPad.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Level3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/UILayer.tscn" type="PackedScene" id=12]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 2 )
 NextLevelScene = ExtResource( 11 )
+
+[node name="UILayer" parent="." instance=ExtResource( 12 )]
 
 [node name="BG" parent="." instance=ExtResource( 3 )]
 

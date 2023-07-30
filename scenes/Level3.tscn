@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Start.tscn" type="PackedScene" id=2]
@@ -8,9 +8,12 @@
 [ext_resource path="res://scenes/BG.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/textures/bg/Pink.png" type="Texture" id=7]
 [ext_resource path="res://scripts/Level.cs" type="Script" id=8]
+[ext_resource path="res://scenes/UILayer.tscn" type="PackedScene" id=9]
 
 [node name="Level3" type="Node2D"]
 script = ExtResource( 8 )
+
+[node name="UILayer" parent="." instance=ExtResource( 9 )]
 
 [node name="BG" parent="." instance=ExtResource( 6 )]
 bg = ExtResource( 7 )
