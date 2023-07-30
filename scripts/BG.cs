@@ -28,7 +28,6 @@ public class BG : ParallaxBackground
 		{
 			rect.Position = Vector2.Zero;	
 		}
-		GD.Print("rect.Position", rect.Position);
 		sprite.RegionRect = rect;
 	}
 }

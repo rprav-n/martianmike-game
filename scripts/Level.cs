@@ -4,16 +4,16 @@ using System;
 public class Level : Node2D
 {
 
-	private Position2D startPosition;
+	private Start start;
 	private Player player;
 
 	public override void _Ready()
 	{
-		startPosition = GetNode<Position2D>("StartPosition");
+		start = GetNode<Start>("Start");
 		player = GetNode<Player>("Player");
+		player.GlobalPosition = start.GetSpawnPosition();
 		
 		var traps = GetTree().GetNodesInGroup("traps");
-		GD.Print("traps ", traps);
 		
 		foreach (var trap in traps)
 		{
@@ -47,7 +47,7 @@ public class Level : Node2D
 	public void resetPlayer(Player p) 
 	{
 		p.StopVelocity();
-		p.GlobalPosition = startPosition.GlobalPosition;	
+		p.GlobalPosition = start.GetSpawnPosition();	
 	}
 	
 	public void _on_Trap_touched_player() 
