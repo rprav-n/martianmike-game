@@ -38,7 +38,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 100, 0 ) ]
 }
 
-[node name="SpikeBall" type="Node2D"]
+[node name="SpikeBall" type="Node2D" groups=["traps"]]
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]

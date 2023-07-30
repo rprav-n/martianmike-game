@@ -11,6 +11,17 @@ public class Level : Node2D
 	{
 		startPosition = GetNode<Position2D>("StartPosition");
 		player = GetNode<Player>("Player");
+		
+		var traps = GetTree().GetNodesInGroup("traps");
+		GD.Print("traps ", traps);
+		
+		foreach (var trap in traps)
+		{
+			if (trap is Node2D node) 
+			{
+				node.Connect("touched_player", this, "_on_Trap_touched_player");
+			}	
+		}
 	}
 
 	public override void _Process(float delta)

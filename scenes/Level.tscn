@@ -41,10 +41,10 @@ position = Vector2( 189, 44 )
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="Saw" parent="Traps" instance=ExtResource( 4 )]
-position = Vector2( -26, 131 )
+position = Vector2( 3, 130 )
 
 [node name="SpikeBall" parent="Traps" instance=ExtResource( 5 )]
-position = Vector2( 57, 136 )
+position = Vector2( 72, 133 )
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -57,5 +57,3 @@ position = Vector2( 145, 152 )
 jumpForce = 450
 
 [connection signal="body_entered" from="DeadZone" to="." method="_on_DeadZone_body_entered"]
-[connection signal="touched_player" from="Traps/Saw" to="." method="_on_Trap_touched_player"]
-[connection signal="touched_player" from="Traps/SpikeBall" to="." method="_on_Trap_touched_player"]
