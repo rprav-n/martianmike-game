@@ -10,6 +10,7 @@ public class Player : KinematicBody2D
 	[Export]
 	private int speed = 100;
 	private int jumpForce = 300;
+	public bool Active = true;
 
 	private AnimatedSprite animatedSprite;
 	private Vector2 newVelocity = Vector2.Zero;
@@ -21,24 +22,28 @@ public class Player : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		
 		// Always apply gravity
 		newVelocity += new Vector2(0, gravity * delta);	
 		if (newVelocity.y > 500) 
 		{
 			newVelocity.y = 500;
 		}
-		
-		if (Input.IsActionJustPressed("jump") && IsOnFloor()) 
+		var direction = 0f;
+		if (Active) 
 		{
-			newVelocity.y = -jumpForce;
+			if (Input.IsActionJustPressed("jump") && IsOnFloor()) 
+			{
+				newVelocity.y = -jumpForce;
+			}
+			
+			direction = Input.GetAxis("move_left", "move_right");
+			if (direction != 0) 
+			{
+				animatedSprite.FlipH = direction == -1;
+			}	
 		}
 		
-		var direction = Input.GetAxis("move_left", "move_right");
-		if (direction != 0) 
-		{
-			animatedSprite.FlipH = direction == -1;
-		}
+		
 		
 		newVelocity.x = direction * speed;
 		

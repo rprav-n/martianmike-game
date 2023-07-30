@@ -10,16 +10,9 @@ public class Exit : Area2D
 		animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
 	}
 
-	public void animate() 
+	public void Animate() 
 	{
 		animatedSprite.Play("win");
 	}
 	
-	public void _on_Exit_body_entered(Node body) 
-	{
-		if (body is Player player) 
-		{
-			animate();
-		}
-	}
 }
