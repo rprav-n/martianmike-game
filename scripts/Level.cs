@@ -8,6 +8,12 @@ public class Level : Node2D
 	private Player player;
 	private Exit exit;
 	private Area2D deadZone;
+	private Timer timer;
+	
+	[Export]
+	private int levelTimer = 5;
+	private int timeLeft = 0;
+	private bool won = false;
 	
 	[Export]
 	private PackedScene NextLevelScene;
@@ -32,6 +38,8 @@ public class Level : Node2D
 		
 		exit.Connect("body_entered", this, "_on_Exit_body_entered");
 		deadZone.Connect("body_entered", this, "_on_DeadZone_body_entered");
+		won = false;
+		createLevelTimer();
 	}
 
 	public override void _Process(float delta)
@@ -69,6 +77,7 @@ public class Level : Node2D
 	{
 		if (body is Player player) 
 		{
+			won = true;
 			exit.Animate();
 			player.Active = false;
 			var timer = GetTree().CreateTimer(3.0f);
@@ -82,5 +91,30 @@ public class Level : Node2D
 		{
 			GetTree().ChangeSceneTo(NextLevelScene);	
 		}
+	}
+	
+	private void createLevelTimer() 
+	{
+		timeLeft = levelTimer;
+		timer = new Timer();
+		timer.WaitTime = 1f;
+		timer.Name = "LevelTimer";
+		timer.Autostart = true;
+		timer.Connect("timeout", this, "_on_LevelTimer_timeout");
+		AddChild(timer);	
+	}
+	
+	private void _on_LevelTimer_timeout() 
+	{
+		if (!won) 
+		{
+			timeLeft -= 1;
+			if (timeLeft < 0) 
+			{
+				resetPlayer(player);
+				timeLeft = levelTimer;
+			}	
+		}
+		
 	}
 }
