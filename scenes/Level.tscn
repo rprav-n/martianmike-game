@@ -41,10 +41,10 @@ position = Vector2( 189, 44 )
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="Saw" parent="Traps" instance=ExtResource( 4 )]
-position = Vector2( 65, 131 )
+position = Vector2( -26, 131 )
 
 [node name="SpikeBall" parent="Traps" instance=ExtResource( 5 )]
-position = Vector2( 112, 139 )
+position = Vector2( 57, 136 )
 
 [node name="Objects" type="Node2D" parent="."]
 
