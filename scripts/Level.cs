@@ -7,6 +7,7 @@ public class Level : Node2D
 	private Start start;
 	private Player player;
 	private Exit exit;
+	private Area2D deadZone;
 	
 	[Export]
 	private PackedScene NextLevelScene;
@@ -15,6 +16,7 @@ public class Level : Node2D
 	{
 		start = GetNode<Start>("Start");
 		exit = GetNode<Exit>("Exit");
+		deadZone = GetNode<Area2D>("DeadZone");
 		player = GetNode<Player>("Player");
 		player.GlobalPosition = start.GetSpawnPosition();
 		
@@ -29,6 +31,7 @@ public class Level : Node2D
 		}
 		
 		exit.Connect("body_entered", this, "_on_Exit_body_entered");
+		deadZone.Connect("body_entered", this, "_on_DeadZone_body_entered");
 	}
 
 	public override void _Process(float delta)
