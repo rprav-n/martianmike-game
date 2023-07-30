@@ -87,6 +87,7 @@ reset={
 2d_physics/layer_2="player"
 2d_physics/layer_3="deadzone"
 2d_physics/layer_4="trap"
+2d_physics/layer_5="exit_area"
 
 [mono]
 
