@@ -74,7 +74,9 @@ public class Level : Node2D
 	public void resetPlayer(Player p) 
 	{
 		p.StopVelocity();
-		p.GlobalPosition = start.GetSpawnPosition();	
+		p.GlobalPosition = start.GetSpawnPosition();
+		timeLeft = levelTimer;
+		hud.SetTimeLabel(timeLeft);
 	}
 	
 	public void _on_Trap_touched_player() 
@@ -125,7 +127,6 @@ public class Level : Node2D
 			if (timeLeft < 0) 
 			{
 				resetPlayer(player);
-				timeLeft = levelTimer;
 			}
 			hud.SetTimeLabel(timeLeft);
 		}

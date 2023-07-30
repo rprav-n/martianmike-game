@@ -14,6 +14,10 @@ config/name="Martian Mike"
 run/main_scene="res://scenes/Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+AudioPlayer="*res://scenes/AudioPlayer.tscn"
+
 [display]
 
 window/size/width=426
