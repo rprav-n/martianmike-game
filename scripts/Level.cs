@@ -16,7 +16,11 @@ public class Level : Node2D
 	private bool won = false;
 	
 	[Export]
+	private bool isFinalLevel = false;
+	
+	[Export]
 	private PackedScene NextLevelScene;
+	private UILayer uiLayer;
 	
 	private HUD hud;
 
@@ -27,7 +31,7 @@ public class Level : Node2D
 		deadZone = GetNode<Area2D>("DeadZone");
 		player = GetNode<Player>("Player");
 		player.GlobalPosition = start.GetSpawnPosition();
-		
+		uiLayer = GetNode<UILayer>("UILayer");
 		hud = GetNode<HUD>("UILayer/HUD");
 		
 		var traps = GetTree().GetNodesInGroup("traps");
@@ -43,6 +47,7 @@ public class Level : Node2D
 		exit.Connect("body_entered", this, "_on_Exit_body_entered");
 		deadZone.Connect("body_entered", this, "_on_DeadZone_body_entered");
 		won = false;
+		uiLayer.ShowWinScreen(false); 
 		createLevelTimer();
 	}
 
@@ -91,9 +96,12 @@ public class Level : Node2D
 	
 	public void _on_Timeout_Complete() 
 	{
-		if (NextLevelScene != null) 
+		if (NextLevelScene != null && !isFinalLevel) 
 		{
 			GetTree().ChangeSceneTo(NextLevelScene);	
+		} else 
+		{
+			uiLayer.ShowWinScreen(true);
 		}
 	}
 	

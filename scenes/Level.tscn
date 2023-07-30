@@ -16,6 +16,7 @@
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
+levelTimer = 15
 NextLevelScene = ExtResource( 11 )
 
 [node name="UILayer" parent="." instance=ExtResource( 13 )]
