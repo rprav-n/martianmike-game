@@ -14,10 +14,12 @@ public class Player : KinematicBody2D
 
 	private AnimatedSprite animatedSprite;
 	private Vector2 newVelocity = Vector2.Zero;
+	private MyAudioPlayer myAudioPlayer;
 	
 	public override void _Ready()
 	{
 		animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+		myAudioPlayer = GetNode<MyAudioPlayer>("/root/MyAudioPlayer");
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -33,6 +35,7 @@ public class Player : KinematicBody2D
 		{
 			if (Input.IsActionJustPressed("jump") && IsOnFloor()) 
 			{
+				myAudioPlayer.PlaySFX("jump");
 				newVelocity.y = -jumpForce;
 			}
 			
@@ -42,8 +45,6 @@ public class Player : KinematicBody2D
 				animatedSprite.FlipH = direction == -1;
 			}	
 		}
-		
-		
 		
 		newVelocity.x = direction * speed;
 		
@@ -83,6 +84,7 @@ public class Player : KinematicBody2D
 	
 	public void Jump(int jumpForce) 
 	{
+		myAudioPlayer.PlaySFX("jump");
 		newVelocity.y = -jumpForce;
 	}
 

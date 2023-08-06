@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="Martian Mike"
-run/main_scene="res://scenes/Level.tscn"
+run/main_scene="res://scenes/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-AudioPlayer="*res://scenes/AudioPlayer.tscn"
+MyAudioPlayer="*res://scenes/MyAudioPlayer.tscn"
 
 [display]
 

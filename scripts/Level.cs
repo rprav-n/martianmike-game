@@ -9,6 +9,7 @@ public class Level : Node2D
 	private Exit exit;
 	private Area2D deadZone;
 	private Timer timer;
+	private MyAudioPlayer myAudioPlayer;
 	
 	[Export]
 	private int levelTimer = 5;
@@ -33,6 +34,7 @@ public class Level : Node2D
 		player.GlobalPosition = start.GetSpawnPosition();
 		uiLayer = GetNode<UILayer>("UILayer");
 		hud = GetNode<HUD>("UILayer/HUD");
+		myAudioPlayer = GetNode<MyAudioPlayer>("/root/MyAudioPlayer");
 		
 		var traps = GetTree().GetNodesInGroup("traps");
 		
@@ -73,6 +75,7 @@ public class Level : Node2D
 	
 	public void resetPlayer(Player p) 
 	{
+		myAudioPlayer.PlaySFX("hurt");
 		p.StopVelocity();
 		p.GlobalPosition = start.GetSpawnPosition();
 		timeLeft = levelTimer;
